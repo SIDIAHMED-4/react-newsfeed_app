@@ -19,39 +19,41 @@ function App() {
   const abortController = useRef(new AbortController());
 
   async function loadData(query, category, page) {
-    const baseEndpoint = `https://newsapi.org/v2/top-headlines?country=us&pageSize=${DEFAULT_PAGE_SIZE}&category=${category}&page=${page}&apiKey=${
-      import.meta.env.VITE_NEWS_API_KEY
-    }`;
+  const baseEndpoint = `/api/news?category=${category}&page=${page}&pageSize=${DEFAULT_PAGE_SIZE}`;
 
-    const response = await fetch(
-      query ? `${baseEndpoint}&q=${query}` : baseEndpoint,
-      {
-        signal: abortController.current.signal,
-      }
-    );
-    const data = await response.json();
-    if (data.status !== "ok") {
-      throw new Error(`Error: ${data.code}, Details: ${data.message}`);
+  const response = await fetch(
+    query ? `${baseEndpoint}&query=${query}` : baseEndpoint,
+    {
+      signal: abortController.current.signal,
     }
-    return data.articles?.map((article) => {
-      const {
-        title,
-        description,
-        urlToImage: image,
-        url,
-        author,
-        publishedAt,
-      } = article;
-      return {
-        title,
-        description,
-        image,
-        url,
-        author,
-        publishedAt,
-      };
-    });
+  );
+
+  const data = await response.json();
+
+  if (data.status !== "ok") {
+    throw new Error(`Error: ${data.code}, Details: ${data.message}`);
   }
+
+  return data.articles?.map((article) => {
+    const {
+      title,
+      description,
+      urlToImage: image,
+      url,
+      author,
+      publishedAt,
+    } = article;
+    return {
+      title,
+      description,
+      image,
+      url,
+      author,
+      publishedAt,
+    };
+  });
+}
+
 
   const fetchArticles = useCallback(
     debounce((query, category, page) => {
