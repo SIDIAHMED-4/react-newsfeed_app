@@ -1,6 +1,5 @@
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import StyledCard from "./StyledCard";
@@ -22,9 +21,7 @@ function NewsArticle(props) {
     <StyledCard>
       <Link target="_blank" href={url}>
         <CardActionArea>
-          {image && (
-            <CardMedia component="img" height="200" image={image} alt={title} />
-          )}
+        
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">
               {title}
