@@ -21,7 +21,7 @@ This app allows users to browse the latest news from different sources with a cl
 ## ⚙️ Setup
 
 Clone the repository and install the dependencies:
-```bash
+bash
 npm install
 
 ---
