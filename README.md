@@ -17,6 +17,11 @@ This app allows users to browse the latest news from different sources with a cl
 ![App Screenshot](react-newsfeed-app.png)
 
 ---
+## Demo
+ 
+[Check out the live demo here:](https://react-newsfeed-app.vercel.app/)
+
+---
 
 ## ⚙️ Setup
 
